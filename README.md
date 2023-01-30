@@ -1,21 +1,78 @@
-# blockchain-carRide
-This project is a smart contract for a car ride sharing service. The contract includes a mechanism to verify the identities of drivers and riders, a rating system to ensure high-quality drivers and riders are able to secure more rides, and additional safety checks to ensure that payments are only made and received once a ride is completed.
+# CarRide Contract
+This is a smart contract for a car ride platform, using the Solidity programming language and built for the Goerli test network using Hardhat.
+ 
+  Deploy
+    deployed on goerli
+    contract address = 0xFeb7365f5E4B4B60f06c040ECbFdCad9f7A61cE3
+    
+# Functions
+  registerRider
+    The registerRider function allows a user to register as a rider by providing their name, contact, and email.
 
-CarRide
-This is a smart contract for a ride-hailing service. It allows users to request and accept rides, as well as rate drivers and riders after a ride is completed.
+    registerDriver
+    The registerDriver function allows a user to register as a driver by providing their name, contact, email, car     number and number of seats.
 
-Features
-Verification of driver and rider identities
-Rating system for drivers and riders
-Safety checks for payment confirmation
-Registration of users with proof of identity
-How to Use
-To use this contract, follow these steps:
+  requestRide
+    The requestRide function allows a registered rider to request a ride by providing the pickup and dropoff location, and the amount they are willing to pay.
+    
+  acceptRide
+    The acceptRide function allows a registered driver to accept a ride request.
 
-Register as a driver or rider by calling the registerUser function. You will need to provide your name and a form of identification.
-If you are a rider, request a ride by calling the requestRide function and providing your pickup and dropoff locations and the distance of the ride.
-If you are a driver, you can view the available ride requests by calling the getRideRequests function. You can accept a request by calling the acceptRideRequest function and providing the ID of the ride.
-Once the ride has been completed, the rider can call the makePayment function to pay the driver. The driver can then call the withdrawPayment function to receive the payment.
-Both the rider and the driver can rate each other by calling the rateUser function and providing a rating from 1 to 5.
-Note
-This contract is provided as an example and is not intended for real-world use. It has not been audited and may contain vulnerabilities. Use at your own risk
+  confirmRide
+    The confirmRide function allows a rider or a driver to confirm a ride.
+
+  getRideInfo
+    The getRideInfo function allows a user to view the details of a specific ride.
+  
+# Events
+  RiderRegister
+    This event is emitted when a user successfully registers as a rider.
+  
+  DriverRegister
+    This event is emitted when a user successfully registers as a driver.
+
+  RequestDriverEvent
+    This event is emitted when a rider requests a ride.
+
+# Requirements
+    Node.js v16 or higher
+    Hardhat v2.0 or higher
+    Goerli test network
+
+# Installation
+  Clone this repository to your local machine.
+  Open a terminal and navigate to the project's root directory.
+  Install the project's dependencies by running npm install.
+  Connect to the Goerli test network by running npx hardhat network --network goerli.
+  Compile the contract by running npx hardhat compile.
+  
+# Usage
+In the project's root directory, open a terminal and run npx hardhat console --network goerli.
+In the Hardhat console, deploy the contract by running deploy().
+Once the contract is deployed, you can interact with it using the following functions:
+registerRider(string memory _name, string memory _contact, string memory _email) : Registers a new rider with the provided name, contact, and email.
+registerDriver(string memory _name, string memory _contact, string memory _email, string memory _carNumber, uint _seats) : Registers a new driver with the provided name, contact, email, car number and number of seats
+requestRide(string memory _pickup, string memory _dropoff, uint _amount): Requests a new ride with the provided pickup and dropoff location and amount. Returns the ride ID.
+acceptRide(uint _rideId): Accepts a ride with the provided ride ID.
+confirmRide(uint _rideId) : Confirm a ride with the provided ride ID
+getRideInfo(uint _rideId) : Returns the information of a ride with the provided ride ID, including rider address, pickup and dropoff location, amount, and whether it is complete and confirmed by rider and driver
+Events
+RiderRegister(address indexed _riderAddr): Triggered when a new rider is registered.
+DriverRegister(address indexed _driverAddr): Triggered when a new driver is registered.
+RequestDriverEvent(address indexed _riderAddr,string pickup, string dropoff): Triggered when a new ride is requested.
+
+# Contact
+If you have any questions or issues regarding this contract, please don't hesitate to contact me.
+
+# Disclaimer
+This contract is for educational and demonstration purposes only. It has not been audited and should not be used in a production environment. Always thoroughly review and test any smart contract before deploying it.
+
+
+
+```shell
+npx hardhat help
+npx hardhat test
+REPORT_GAS=true npx hardhat test
+npx hardhat node
+npx hardhat run scripts/deploy.js
+```
