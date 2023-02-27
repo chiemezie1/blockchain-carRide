@@ -43,23 +43,23 @@ This is a smart contract for a car ride platform, using the Solidity programming
   Clone this repository to your local machine.
   Open a terminal and navigate to the project's root directory.
   Install the project's dependencies by running npm install.
-  Connect to the Goerli test network by running npx hardhat network --network goerli.
-  Compile the contract by running npx hardhat compile.
+ 
   
 # Usage
-In the project's root directory, open a terminal and run npx hardhat console --network goerli.
-In the Hardhat console, deploy the contract by running deploy().
-Once the contract is deployed, you can interact with it using the following functions:
-registerRider(string memory _name, string memory _contact, string memory _email) : Registers a new rider with the provided name, contact, and email.
-registerDriver(string memory _name, string memory _contact, string memory _email, string memory _carNumber, uint _seats) : Registers a new driver with the provided name, contact, email, car number and number of seats
-requestRide(string memory _pickup, string memory _dropoff, uint _amount): Requests a new ride with the provided pickup and dropoff location and amount. Returns the ride ID.
-acceptRide(uint _rideId): Accepts a ride with the provided ride ID.
-confirmRide(uint _rideId) : Confirm a ride with the provided ride ID
-getRideInfo(uint _rideId) : Returns the information of a ride with the provided ride ID, including rider address, pickup and dropoff location, amount, and whether it is complete and confirmed by rider and driver
-Events
-RiderRegister(address indexed _riderAddr): Triggered when a new rider is registered.
-DriverRegister(address indexed _driverAddr): Triggered when a new driver is registered.
-RequestDriverEvent(address indexed _riderAddr,string pickup, string dropoff): Triggered when a new ride is requested.
+ Compile the contract by running npx hardhat compile.
+ Deploy to the Goerli test network by running npx hardhat run scripts/deploy.js
+ 
+  Once the contract is deployed, you can interact with it using the following functions:
+  registerRider(string memory _name, string memory _contact, string memory _email) : Registers a new rider with the provided name, contact, and email.
+  registerDriver(string memory _name, string memory _contact, string memory _email, string memory _carNumber, uint _seats) : Registers a new driver with the provided name, contact, email, car number and number of seats
+  requestRide(string memory _pickup, string memory _dropoff, uint _amount): Requests a new ride with the provided pickup and dropoff location and amount. Returns the ride ID.
+  acceptRide(uint _rideId): Accepts a ride with the provided ride ID.
+  confirmRide(uint _rideId) : Confirm a ride with the provided ride ID
+  getRideInfo(uint _rideId) : Returns the information of a ride with the provided ride ID, including rider address, pickup and dropoff location, amount, and whether it is complete and confirmed by rider and driver
+  Events
+  RiderRegister(address indexed _riderAddr): Triggered when a new rider is registered.
+  DriverRegister(address indexed _driverAddr): Triggered when a new driver is registered.
+  RequestDriverEvent(address indexed _riderAddr,string pickup, string dropoff): Triggered when a new ride is requested.
 
 # Contact
 If you have any questions or issues regarding this contract, please don't hesitate to contact me.
@@ -74,5 +74,5 @@ npx hardhat help
 npx hardhat test
 REPORT_GAS=true npx hardhat test
 npx hardhat node
-npx hardhat run scripts/deploy.js
+
 ```
