@@ -6,6 +6,7 @@ import RequestRide from "./RequestRide";
 import CancelRide from "./CancelRide";
 import PayDriver from "./PayDriver";
 import RequestTile from "./RequestTile";
+import UpdateDriverRating from "./UpdateDriverRating";
 
 const { ethers } = require("ethers");
 
@@ -182,14 +183,17 @@ function Profile() {
                 <span className="block text-lg text-gray-600 mt-2 p-16">
                   BlockRide car Ride service
                 </span>
+                {userType === "driver" ? (<UpdateDriverRating></UpdateDriverRating>) : (null
+              )}
               </div>
 
               {userType === "rider" ? (
                 <div className="md:w-1/2 px-8 md:px-0 md:py-8">
                   <RequestRide></RequestRide>
-                  <div className= "flex m-16 p-16 rounded-lg bg-blue-400">
+                  <div className="flex m-16 p-16 rounded-lg bg-blue-400">
                     <CancelRide></CancelRide>
                     <PayDriver></PayDriver>
+                    <UpdateDriverRating></UpdateDriverRating>
                   </div>
                 </div>
               ) : (
