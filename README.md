@@ -66,13 +66,3 @@ If you have any questions or issues regarding this contract, please don't hesita
 
 # Disclaimer
 This contract is for educational and demonstration purposes only. It has not been audited and should not be used in a production environment. Always thoroughly review and test any smart contract before deploying it.
-
-
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-
-```
