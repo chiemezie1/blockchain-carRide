@@ -184,13 +184,13 @@ function Profile() {
                   BlockRide car Ride service
                 </span>
                 {userType === "driver" ? (<UpdateDriverRating></UpdateDriverRating>) : (null
-              )}
+                )}
               </div>
 
               {userType === "rider" ? (
                 <div className="md:w-1/2 px-8 md:px-0 md:py-8">
                   <RequestRide></RequestRide>
-                  <div className="flex m-16 p-16 rounded-lg bg-blue-400">
+                  <div className="flex flex-wrap sm:flex-row mx-16 px-16">
                     <CancelRide></CancelRide>
                     <PayDriver></PayDriver>
                     <UpdateDriverRating></UpdateDriverRating>

@@ -64,7 +64,7 @@ function PayDriver() {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="mx-2">
       {success ? (
         <div className="text-green-500">Payment Successful!</div>
       ) : (

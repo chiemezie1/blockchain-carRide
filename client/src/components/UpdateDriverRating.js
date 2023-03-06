@@ -42,9 +42,9 @@ function UpdateDriverRating() {
   }
 
   return (
-    <div className="mx-16">
-      <p>Help us serve you bette</p>
-      <p>Rate our driver today!</p>
+    <div className=" mx-2">
+      {/*       <p>Help us serve you bette</p>
+      <p>Rate our driver today!</p> */}
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col">
           <input

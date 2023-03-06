@@ -41,9 +41,9 @@ function CancelRide() {
   }
 
   return (
-    <div className="mx-16">
+    <div className="mx-2">
       <form onSubmit={handleSubmit}>
-       <div className="flex flex-col">
+        <div className="flex flex-col">
           <input
             type="text"
             className="p-2 border-2 border-black rounded-lg"
@@ -51,14 +51,14 @@ function CancelRide() {
             value={rideId}
             onChange={(e) => setRideId(e.target.value)}
           />
-      
-        <button
-          className="bg-orange-600 hover:bg-orange-700 text-white p-2 rounded-lg mt-2"
-          type="submit"
-        >
-          Cancel A Ride
-        </button>
-         </div>
+
+          <button
+            className="bg-orange-600 hover:bg-orange-700 text-white p-2 rounded-lg mt-2"
+            type="submit"
+          >
+            Cancel A Ride
+          </button>
+        </div>
       </form>
       {cancelled ? (
         <div className="text-2xl text-green-900">
