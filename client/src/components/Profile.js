@@ -7,6 +7,7 @@ import CancelRide from "./CancelRide";
 import PayDriver from "./PayDriver";
 import RequestTile from "./RequestTile";
 import UpdateDriverRating from "./UpdateDriverRating";
+import ViewRideStatus from "./ViewRideStatus";
 
 const { ethers } = require("ethers");
 
@@ -122,12 +123,20 @@ function Profile() {
                 <div className="text-4xl font-extrabold  text-gray-900 p-8 text-center border-b border-gray-200 tracking-wide">
                   Welcome Back {userInfo.name}!
                   <span className="block text-lg text-gray-600 mt-2">
-                    You are registered {" "}
-                    {userType === "driver" ? <p>As Driver ||
-                      <span className="text-xl ml-2">Seats Capacity: {userInfo.seats} ||</span>
-                      <span className="text-xl ml-2">Current rating: {userInfo.rating}</span>
-                    </p>
-                      : <p>As Rider</p>}
+                    You are registered{" "}
+                    {userType === "driver" ? (
+                      <p>
+                        As Driver ||
+                        <span className="text-xl ml-2">
+                          Seats Capacity: {userInfo.seats} ||
+                        </span>
+                        <span className="text-xl ml-2">
+                          Current rating: {userInfo.rating}
+                        </span>
+                      </p>
+                    ) : (
+                      <p>As Rider</p>
+                    )}
                   </span>
                 </div>
                 <div className="block sm:flex md:block lg:flex items-center justify-center">
@@ -187,8 +196,9 @@ function Profile() {
                 <span className="block text-lg text-gray-600 mt-2 p-16">
                   BlockRide car Ride service
                 </span>
-                {/*                 {userType === "rider" ? (<UpdateDriverRating></UpdateDriverRating>) : (null
-                )} */}
+                {userType === "rider" ? (
+                  <ViewRideStatus></ViewRideStatus>
+                ) : null}
               </div>
 
               {userType === "rider" ? (

@@ -44,13 +44,12 @@ function RequestRide() {
       const weiAmount = utils.parseEther(amount).toString();
       const tx = await contract.requestRide(pickup, dropoff, weiAmount);
       await tx.wait();
-      setRequested(true)
+      setRequested(true);
     } catch (error) {
       console.error(error);
       alert("Error: " + error.message);
     }
   }
-
 
   return (
     <div>
@@ -92,7 +91,9 @@ function RequestRide() {
         </div>
         <div className="flex justify-between my-4">
           <div className="m-8 w-1/3">
-            <label className="block font-bold text-lg mb-2">Amount In ETH</label>
+            <label className="block font-bold text-lg mb-2">
+              Amount In ETH
+            </label>
             <input
               type="number"
               required
