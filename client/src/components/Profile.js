@@ -74,8 +74,8 @@ function Profile() {
             contact: driver[1],
             email: driver[2],
             carNumber: driver[3],
-            seats: driver[4].toString(),
-            rating: driver[5].toString(),
+            seats: driver[4].toNumber(),
+            rating: driver[5].toNumber(),
             status: driver[6],
           });
         }
@@ -122,8 +122,12 @@ function Profile() {
                 <div className="text-4xl font-extrabold  text-gray-900 p-8 text-center border-b border-gray-200 tracking-wide">
                   Welcome Back {userInfo.name}!
                   <span className="block text-lg text-gray-600 mt-2">
-                    You are registered as{" "}
-                    {userType === "driver" ? <p>Driver</p> : <p>Rider</p>}
+                    You are registered {" "}
+                    {userType === "driver" ? <p>As Driver ||
+                      <span className="text-xl ml-2">Seats Capacity: {userInfo.seats} ||</span>
+                      <span className="text-xl ml-2">Current rating: {userInfo.rating}</span>
+                    </p>
+                      : <p>As Rider</p>}
                   </span>
                 </div>
                 <div className="block sm:flex md:block lg:flex items-center justify-center">
@@ -183,8 +187,8 @@ function Profile() {
                 <span className="block text-lg text-gray-600 mt-2 p-16">
                   BlockRide car Ride service
                 </span>
-                {userType === "driver" ? (<UpdateDriverRating></UpdateDriverRating>) : (null
-                )}
+                {/*                 {userType === "rider" ? (<UpdateDriverRating></UpdateDriverRating>) : (null
+                )} */}
               </div>
 
               {userType === "rider" ? (
