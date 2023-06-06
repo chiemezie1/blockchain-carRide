@@ -1,62 +1,63 @@
 import fullLogo from "../full_logo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { ethers } from "ethers";
 
 function Navbar() {
-  const [connected, toggleConnect] = useState(false);
+  const [connected, setConnected] = useState(false);
+  const [currAddress, setCurrAddress] = useState("0x");
   const location = useLocation();
-  const [currAddress, updateAddress] = useState("0x");
 
   async function getAddress() {
-    const ethers = require("ethers");
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const addr = await signer.getAddress();
-    updateAddress(addr);
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const addr = await signer.getAddress();
+      setCurrAddress(addr);
+    } catch (error) {
+      console.log("Failed to get address:", error);
+    }
   }
 
   function updateButton() {
     const ethereumButton = document.querySelector(".enableEthereumButton");
-    ethereumButton.textContent = "Connected";
-    ethereumButton.classList.remove("hover:bg-blue-70");
-    ethereumButton.classList.remove("bg-blue-500");
-    ethereumButton.classList.add("hover:bg-green-70");
-    ethereumButton.classList.add("bg-green-500");
+    if (ethereumButton) {
+      ethereumButton.textContent = "Connected";
+      ethereumButton.classList.remove("hover:bg-blue-70");
+      ethereumButton.classList.remove("bg-blue-500");
+      ethereumButton.classList.add("hover:bg-green-70");
+      ethereumButton.classList.add("bg-green-500");
+    }
   }
 
   async function connectWebsite() {
-    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-    if (chainId !== '0x5') {
-      //alert('Incorrect network! Switch your metamask network to Rinkeby');
-      await window.ethereum.request({
-        method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x5' }],
-      })
+    try {
+      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+      if (chainId !== '0x5') {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0x5' }],
+        });
+      }
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      updateButton();
+      console.log("here");
+      getAddress(); // Call the getAddress function here
+    } catch (error) {
+      console.log("Failed to connect:", error);
     }
-    await window.ethereum.request({ method: 'eth_requestAccounts' })
-      .then(() => {
-        updateButton();
-        console.log("here");
-        getAddress();
-        window.location.replace(location.pathname)
-      });
   }
 
- useEffect(() => {
-  let val = window.ethereum.isConnected();
-  if (val) {
-    console.log("here");
-    getAddress();
-    toggleConnect(val);
-    updateButton();
-  }
+  useEffect(() => {
+    function handleAccountsChanged(accounts) {
+      window.location.replace(location.pathname);
+    }
 
-  window.ethereum.on('accountsChanged', function(accounts){
-    window.location.replace(location.pathname)
-  })
-}, []); // add empty dependency array
-
+    window.ethereum?.on('accountsChanged', handleAccountsChanged);
+    return () => {
+      window.ethereum?.removeListener('accountsChanged', handleAccountsChanged);
+    };
+  }, [location]);
 
   return (
     <div className="">
@@ -75,33 +76,15 @@ function Navbar() {
           </li>
           <li className="w-2/6">
             <ul className="lg:flex justify-between font-bold mr-10 text-lg">
-              {location.pathname === "/" ? (
-                <li className="border-b-2 hover:pb-0 p-2">
-                  <Link to="/">Home</Link>
-                </li>
-              ) : (
-                <li className="hover:border-b-2 hover:pb-0 p-2">
-                  <Link to="/">Home</Link>
-                </li>
-              )}
-              {location.pathname === "/sellNFT" ? (
-                <li className="border-b-2 hover:pb-0 p-2">
-                  <Link to="/About">About </Link>
-                </li>
-              ) : (
-                <li className="hover:border-b-2 hover:pb-0 p-2">
-                  <Link to="/About">About </Link>
-                </li>
-              )}
-              {location.pathname === "/profile" ? (
-                <li className="border-b-2 hover:pb-0 p-2">
-                  <Link to="/profile">Profile</Link>
-                </li>
-              ) : (
-                <li className="hover:border-b-2 hover:pb-0 p-2">
-                  <Link to="/profile">Profile</Link>
-                </li>
-              )}
+              <li className={`hover:border-b-2 hover:pb-0 p-2 ${location.pathname === "/" && "border-b-2"}`}>
+                <Link to="/">Home</Link>
+              </li>
+              <li className={`hover:border-b-2 hover:pb-0 p-2 ${location.pathname === "/sellNFT" && "border-b-2"}`}>
+                <Link to="/About">About</Link>
+              </li>
+              <li className={`hover:border-b-2 hover:pb-0 p-2 ${location.pathname === "/profile" && "border-b-2"}`}>
+                <Link to="/profile">Profile</Link>
+              </li>
               <li>
                 <button
                   className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm"
@@ -114,10 +97,8 @@ function Navbar() {
           </li>
         </ul>
       </nav>
-      <div className="text-white text-bold text-right mr-10 text-sm">
-        {currAddress !== "0x"
-          ? "Connected to"
-          : "Not Connected. Please login to view NFTs"}{" "}
+      <div className="text-green-700 text-bold text-right mr-10 text-sm">
+        {currAddress !== "0x" ? "Connected to" : "Not Connected. Please login to view NFTs"}{" "}
         {currAddress !== "0x" ? currAddress.substring(0, 15) + "..." : ""}
       </div>
     </div>
