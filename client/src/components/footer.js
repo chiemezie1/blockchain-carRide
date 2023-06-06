@@ -3,45 +3,51 @@ import fullLogo from "../full_logo.png";
 
 const Footer = () => {
   return (
-    <div className="bg-gray-800 h-48 text-white font-bold flex justify-between items-center">
-      <footer className="font-sans mx-auto py-4  flex  ">
-        <a href="/" className="logo">
-          <img src={fullLogo} alt="" width={120} height={120} className="" />
-          {+new Date().getFullYear()}
-        </a>
-        <div className="flex">
-          <nav className="mx-64 px-64">
-            <ul className="">
-              <li className="">
-                <div className="">Home Page</div>
-              </li>
-              <li className="">
-                <div className="">Request</div>
-              </li>
-              <li className="">
-                <div className="">Aoubt us</div>
-              </li>
-            </ul>
-          </nav>
-          <nav className="">
-            <ul className=" ">
-              <li className="">
-                <div className="">Drivers</div>
-              </li>
-              <li className="">
-                <div className="">Riders</div>
-              </li>
-              <li className="">
-                <a className="">Contact</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+    <div className="bg-gray-800 h-48 text-white font-bold" > 
+    <div className=" flex justify-between items-center">
+    <img src={fullLogo} alt="" width={120} height={120} className="m-2" />
+
+
+      <footer className="text-center">
+          <ul className="font-sans mx-auto flex flex-wrap justify-center">
+            <li className="m-4">
+              <a href="/" className="text-white">
+                Home
+              </a>
+            </li>
+            <li className="m-4">
+              <a href="/request" className="text-white">
+                Request
+              </a>
+            </li>
+            <li className="m-4">
+              <a href="/about" className="text-white">
+                About Us
+              </a>
+            </li>
+            <li className="m-4">
+              <a href="/drivers" className="text-white">
+                Drivers
+              </a>
+            </li>
+            <li className="m-4">
+              <a href="/riders" className="text-white">
+                Riders
+              </a>
+            </li>
+            <li className="m-4">
+              <a href="/contact" className="text-white">
+                Contact
+              </a>
+            </li>
+          </ul>
       </footer>
-      <div className="font-sans mx-auto py-4 text-center">
-        Copyright © Block-Ride <br />
-        ....by CHIEMEZIE AGBO
+
       </div>
+      <div className="font-sans mx-auto py-4 text-center">
+        &copy; Block-Ride by CHIEMEZIE AGBO
+      </div>
+ 
     </div>
   );
 };
