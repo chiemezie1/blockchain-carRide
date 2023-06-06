@@ -13,38 +13,26 @@ const Footer = () => {
           <nav className="mx-64 px-64">
             <ul className="">
               <li className="">
-                <div className="">
-                  Home Page
-                </div>
+                <div className="">Home Page</div>
               </li>
               <li className="">
-                <div className="">
-                  Request
-                </div>
+                <div className="">Request</div>
               </li>
               <li className="">
-                <div className="">
-                  Aoubt us
-                </div>
+                <div className="">Aoubt us</div>
               </li>
             </ul>
           </nav>
           <nav className="">
             <ul className=" ">
               <li className="">
-                <div className="">
-                  Drivers
-                </div>
+                <div className="">Drivers</div>
               </li>
               <li className="">
-                <div className="">
-                  Riders
-                </div>
+                <div className="">Riders</div>
               </li>
               <li className="">
-                <a  className="">
-                  Contact
-                </a>
+                <a className="">Contact</a>
               </li>
             </ul>
           </nav>

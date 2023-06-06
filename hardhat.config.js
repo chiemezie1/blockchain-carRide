@@ -5,7 +5,6 @@ const fs = require('fs');
 
 const { API_URL, PRIVATE_KEY } = process.env;
 
-
 // const infuraId = fs.readFileSync(".infuraid").toString().trim() || "";
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {

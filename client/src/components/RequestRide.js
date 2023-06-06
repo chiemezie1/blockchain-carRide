@@ -38,24 +38,23 @@ function RequestRide() {
     const contract = new ethers.Contract(CarRide.address, CarRide.abi, signer);
     try {
       contract.on("RequestDriverEvent", (rideId) => {
-      setRideId(rideId.toString());
-    });
-      
+        setRideId(rideId.toString());
+      });
+
       const weiAmount = utils.parseEther(amount).toString();
       const tx = await contract.requestRide(pickup, dropoff, weiAmount);
       await tx.wait();
-      setRequested(true)
+      setRequested(true);
     } catch (error) {
       console.error(error);
       alert("Error: " + error.message);
     }
-}
-
+  }
 
   return (
     <div>
       <form
-        className=" font-sans  justify-center rounded-lg m-32 p-4 bg-red-300"
+        className=" font-sans  justify-center rounded-lg m-32 p-4 bg-gray-400"
         onSubmit={handleSubmit}
       >
         <h1 className="text-3xl items-center font-bold text-center">
@@ -92,7 +91,9 @@ function RequestRide() {
         </div>
         <div className="flex justify-between my-4">
           <div className="m-8 w-1/3">
-            <label className="block font-bold text-lg mb-2">Amount In ETH</label>
+            <label className="block font-bold text-lg mb-2">
+              Amount In ETH
+            </label>
             <input
               type="number"
               required
@@ -111,7 +112,7 @@ function RequestRide() {
         </div>
         {rideId ? <h1>Your ride ID is: {rideId}</h1> : null}
         {requested ? (
-           <div className="text-2xl text-green-900">
+          <div className="text-2xl text-green-900">
             <h3>Successfully Requested Ride! Ride ID: {rideId} </h3>
           </div>
         ) : null}

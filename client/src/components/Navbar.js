@@ -31,6 +31,7 @@ function Navbar() {
   }
 
   async function connectWebsite() {
+<<<<<<< HEAD
     try {
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
       if (chainId !== '0x5') {
@@ -58,6 +59,39 @@ function Navbar() {
       window.ethereum?.removeListener('accountsChanged', handleAccountsChanged);
     };
   }, [location]);
+=======
+    const chainId = await window.ethereum.request({ method: "eth_chainId" });
+    if (chainId !== "0x5") {
+      //alert('Incorrect network! Switch your metamask network to Rinkeby');
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x5" }],
+      });
+    }
+    await window.ethereum
+      .request({ method: "eth_requestAccounts" })
+      .then(() => {
+        updateButton();
+        console.log("here");
+        getAddress();
+        window.location.replace(location.pathname);
+      });
+  }
+
+  useEffect(() => {
+    let val = window.ethereum.isConnected();
+    if (val) {
+      console.log("here");
+      getAddress();
+      toggleConnect(val);
+      updateButton();
+    }
+
+    window.ethereum.on("accountsChanged", function(accounts) {
+      window.location.replace(location.pathname);
+    });
+  }, []); // add empty dependency array
+>>>>>>> b78d12c7ae6b93e0c5152b6b8696d26161c2ffad
 
   return (
     <div className="">

@@ -3,7 +3,7 @@ This is a smart contract for a car ride platform, using the Solidity programming
  
   Deploy
     deployed on goerli
-    contract address = 0xcba43B2959d41Aaa0f62675789437b3C12de57Fb
+    contract address = 0x12175E6C31afc8A5648Aeee20563A7e9d6D29D46
     
 # Functions
   registerRider

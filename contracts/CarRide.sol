@@ -113,6 +113,14 @@ contract CarRide {
     function getAllRides() public view returns(Ride[] memory){
         return rides;
     }
+    
+    function viewRideStatus(uint _rideId) public view returns (string memory, string memory, uint, bool, bool, address) {
+    require(_rideId < rides.length, "Invalid ride ID provided.");
+
+    Ride memory ride = rides[_rideId];
+    return (ride.pickup, ride.dropoff, ride.amount, ride.complete, ride.confirmedByDriver, ride.driverAddr);
+}
+
 
     function updateDriverRating(uint _rideId, uint _rating) public {
         require(rides[_rideId].complete == true, "Ride is not completed, rating can't be updated");
@@ -132,8 +140,5 @@ contract CarRide {
         drivers[driverAddr].status = DriverStatus.FREE;
         driverAddr.transfer(rides[_rideId].amount);
     }
-
-
-
 
 }

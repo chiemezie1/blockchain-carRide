@@ -151,7 +151,7 @@ function Register() {
           <button
             type="submit"
             onClick={register}
-            className="bg-blue-900 py-2 px-12 rounded-md text-white hover:bg-blue-700 hover:cursor-pointer" 
+            className="bg-blue-900 py-2 px-12 rounded-md text-white hover:bg-blue-700 hover:cursor-pointer"
           >
             Register
           </button>

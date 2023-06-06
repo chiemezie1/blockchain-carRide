@@ -64,33 +64,32 @@ function PayDriver() {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="mx-2">
+      <div className="flex flex-col">
+        <input
+          type="text"
+          className="p-2 border-2 border-black rounded-lg"
+          placeholder="Ride Id"
+          value={rideId}
+          onChange={handleRideIdChange}
+        />
+        <input
+          type="text"
+          className="p-2 border-2 border-black rounded-lg"
+          placeholder="Amount"
+          value={amount}
+          onChange={handleAmountChange}
+        />
+        <button
+          className="bg-orange-600 hover:bg-orange-700 text-white p-2 rounded-lg mt-2"
+          onClick={handlePayDriver}
+        >
+          Pay Driver
+        </button>
+      </div>
       {success ? (
         <div className="text-green-500">Payment Successful!</div>
-      ) : (
-        <div className="flex flex-col">
-          <input
-            type="text"
-            className="p-2 border-2 border-black rounded-lg"
-            placeholder="Ride Id"
-            value={rideId}
-            onChange={handleRideIdChange}
-          />
-          <input
-            type="text"
-            className="p-2 border-2 border-black rounded-lg"
-            placeholder="Amount"
-            value={amount}
-            onChange={handleAmountChange}
-          />
-          <button
-            className="bg-orange-600 hover:bg-orange-700 text-white p-2 rounded-lg mt-2"
-            onClick={handlePayDriver}
-          >
-            Pay Driver
-          </button>
-        </div>
-      )}
+      ) : null}
     </div>
   );
 }

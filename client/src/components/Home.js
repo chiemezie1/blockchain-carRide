@@ -3,7 +3,6 @@ import Banner from "./Banner";
 import banner from "../bg_banner.jpg";
 import Footer from "./footer";
 
-
 export default function Home() {
   return (
     <div
