@@ -9,7 +9,7 @@ const Footer = () => {
 
 
       <footer className="text-center">
-          <ul className="font-sans mx-auto flex flex-wrap justify-center">
+          <ul className="font-sans mx-auto flex flex-wrap text-center justify-center">
             <li className="m-4">
               <a href="/" className="text-white">
                 Home
@@ -26,8 +26,8 @@ const Footer = () => {
               </a>
             </li>
             <li className="m-4">
-              <a href="/drivers" className="text-white">
-                Drivers
+              <a href="/register" className="text-white">
+            Register
               </a>
             </li>
             <li className="m-4">
@@ -44,7 +44,7 @@ const Footer = () => {
       </footer>
 
       </div>
-      <div className="font-sans mx-auto py-4 text-center">
+      <div className="font-sans mx-auto -m-4 text-center">
         &copy; Block-Ride by CHIEMEZIE AGBO
       </div>
  
