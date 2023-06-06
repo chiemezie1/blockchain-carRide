@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import CarRide from "../contract/CarRide.json";
+import DriverRegistration from "./DriverRegistration";
+import UserRegistration from "./UserRegistration";
 import Navbar from "./Navbar";
 
-function Register() {
-  const [userType, setUserType] = useState("rider");
-  const [values, setValues] = useState({
-    name: "",
-    contact: "",
-    email: "",
-    carNumber: "",
-    seats: "",
-  });
+const Careers = () => {
+  const [userType, setUserType] = useState("empty");
+  const [role, setRole] = useState("");
+  const [values, setValues] = useState({});
   const [isRegistered, setIsRegistered] = useState(false);
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
@@ -33,19 +30,18 @@ function Register() {
     }
   }, []);
 
-  const handleChange = (event) => {
-    event.persist();
-    setValues((values) => ({
-      ...values,
-      [event.target.name]: event.target.value,
-    }));
+  const handleInputChange = (e) => {
+    setRole(e.target.value);
   };
 
-  const handleUserType = (e) => {
-    setUserType(userType === "driver" ? "rider" : "driver");
+  const handleGetStarted = () => {
+    if (role) {
+      setUserType(role);
+    }
   };
 
-  async function register() {
+  const handleSubmit = async (data) => {
+    setValues(data);
     if (!provider || !signer) {
       alert("Please connect to Ethereum network");
       return;
@@ -54,19 +50,19 @@ function Register() {
     try {
       if (userType === "rider") {
         const tx = await contract.registerRider(
-          values.name,
-          values.contact,
-          values.email
+          data.name,
+          data.contact,
+          data.email
         );
         await tx.wait();
         setIsRegistered(true);
       } else if (userType === "driver") {
         const tx = await contract.registerDriver(
-          values.name,
-          values.contact,
-          values.email,
-          values.carNumber,
-          values.seats
+          data.name,
+          data.contact,
+          data.email,
+          data.carNumber,
+          data.seats
         );
         await tx.wait();
         setIsRegistered(true);
@@ -75,92 +71,64 @@ function Register() {
       console.error(error);
       alert("Error: " + error.message);
     }
-  }
+  };
 
   return (
-    <div>
-      <Navbar></Navbar>
-      <div className="font-sans w-3/5 mx-auto justify-center rounded-lg m-81 p-32 bg-gray-200">
-        <div>
-          <div>
-            <h1 className="text-3xl items-center font-bold text-center">
-              Sign Up !
-            </h1>
-            <button
-              type="submit"
-              onClick={handleUserType}
-              className="font-bold mt-10 w-1/5 bg-red-700 hover:bg-red-900 text-white rounded p-2 shadow-lg"
-            >
-              Click if Driver
-            </button>
-          </div>
-          <div className="block font-bold text-lg mb-2">
-            <div>Name:</div>
-            <input
-              className="rounded-md py-2 px-3 w-full"
-              name="name"
-              type="text"
-              value={values.name}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="block font-bold text-lg mb-2">
-            <div>Contact:</div>
-            <input
-              className="rounded-md py-2 px-3 w-full"
-              name="contact"
-              type="text"
-              value={values.contact}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="block font-bold text-lg mb-2">
-            <div>Email:</div>
-            <input
-              className="rounded-md py-2 px-3 w-full"
-              name="email"
-              type="text"
-              value={values.email}
-              onChange={handleChange}
-            />
-          </div>
-          {userType === "driver" ? (
+    <div
+      style={{
+        background: "linear-gradient(to right, #ff4c4c, #7b113a)",
+      }}
+    >
+      <Navbar />
+
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="max-w-xl w-full mt-10 p-6">
+          {userType === "empty" ? (
             <div>
-              <div className="block font-bold text-lg mb-2">
-                <div>Car Number:</div>
-                <input
-                  className="rounded-md py-2 px-3 w-full"
-                  name="carNumber"
-                  type="text"
-                  value={values.carNumber}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="block font-bold text-lg mb-2">
-                <div>Seats:</div>
-                <input
-                  className="rounded-md py-2 px-3 w-full"
-                  name="seats"
-                  type="text"
-                  value={values.seats}
-                  onChange={handleChange}
-                />
-              </div>
+              <label
+                htmlFor="role"
+                className="block text-gray-100 text-2xl font-bold mb-2"
+              >
+                Select a role
+              </label>
+              <select
+                id="role"
+                name="role"
+                value={role}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500"
+              >
+                <option value="">-- Select a role --</option>
+                <option value="rider">Rider</option>
+                <option value="driver">Driver</option>
+              </select>
+              <button
+                type="button"
+                onClick={handleGetStarted}
+                className="my-4 flex justify-end bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-8 rounded-lg"
+                disabled={!role}
+              >
+                Get Started
+              </button>
             </div>
           ) : null}
-          <button
-            type="submit"
-            onClick={register}
-            className="bg-blue-900 py-2 px-12 rounded-md text-white hover:bg-blue-700 hover:cursor-pointer"
-          >
-            Register
-          </button>
-          {isRegistered ? (
-            <div className="text-green-500">Successfully Registered!</div>
+
+          {userType === "rider" && !isRegistered ? (
+            <UserRegistration onSubmit={handleSubmit} />
+          ) : userType === "driver" && !isRegistered ? (
+            <DriverRegistration onSubmit={handleSubmit} />
+          ) : isRegistered == true ? (
+            <div>
+              <p>Registration successful!</p>
+              <a href="/" className="text-white">
+                Home
+              </a>
+            </div>
           ) : null}
         </div>
       </div>
     </div>
   );
-}
-export default Register;
+};
+
+export default Careers;
