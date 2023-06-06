@@ -62,8 +62,8 @@ function Navbar() {
   return (
     <div className="">
       <nav className="w-screen mx-2 mb-2 bg-gray-900 sticky top-0 rounded-b-5">
-        <ul className="flex items-end justify-between py-3 bg-transparent text-white pr-5">
-          <li className="flex items-end ml-5 pb-2">
+        <div className="flex items-center justify-between py-3 bg-transparent text-white pr-5">
+          <div className="ml-5">
             <Link to="/">
               <img
                 src={fullLogo}
@@ -73,9 +73,9 @@ function Navbar() {
                 className="inline-block -mt-2"
               />
             </Link>
-          </li>
-          <li className="w-2/6">
-            <ul className="lg:flex justify-between font-bold mr-10 text-lg">
+          </div>
+          <div className="w-2/6 hidden lg:block">
+            <ul className="flex justify-between font-bold mr-10 text-lg">
               <li className={`hover:border-b-2 hover:pb-0 p-2 ${location.pathname === "/" && "border-b-2"}`}>
                 <Link to="/">Home</Link>
               </li>
@@ -94,15 +94,43 @@ function Navbar() {
                 </button>
               </li>
             </ul>
-          </li>
-        </ul>
+          </div>
+          <div className="lg:hidden">
+            <button className="text-white focus:outline-none">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div className="lg:hidden bg-gray-900">
+          <ul className="px-4 py-2">
+            <li className={`text-white py-2 ${location.pathname === "/" && "border-b-2"}`}>
+              <Link to="/">Home</Link>
+            </li>
+            <li className={`text-white py-2 ${location.pathname === "/sellNFT" && "border-b-2"}`}>
+              <Link to="/About">About</Link>
+            </li>
+            <li className={`text-white py-2 ${location.pathname === "/profile" && "border-b-2"}`}>
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li>
+              <button
+                className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm w-full"
+                onClick={connectWebsite}
+              >
+                {connected ? "Connected" : "Connect Wallet"}
+              </button>
+            </li>
+          </ul>
+        </div>
       </nav>
-      <div className="text-green-700 text-bold text-right mr-10 text-sm">
+      <div className="text-green-700 font-bold text-right mr-10 text-sm">
         {currAddress !== "0x" ? "Connected to" : "Not Connected. Please login to view NFTs"}{" "}
         {currAddress !== "0x" ? currAddress.substring(0, 15) + "..." : ""}
       </div>
     </div>
   );
-}
+  }  
 
 export default Navbar;
