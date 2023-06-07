@@ -1,18 +1,10 @@
 import React, { useState } from "react";
 import profileImage from "../../assets/profile.svg";
-import cancel from "../../assets/_cancel.svg";
-import pay from "../../assets/pay.svg";
+import driver from "../../assets/_driver.svg";
 import home from "../../assets/home.svg";
 import activity from "../../assets/activity.svg";
-import check from "../../assets/check.svg";
-import RequestRide from "../RequestRide";
-import CancelRide from "../CancelRide";
-import PayDriver from "../PayDriver";
-import UpdateDriverRating from "../UpdateDriverRating";
-import ViewRideStatus from "../ViewRideStatus";
 
-
-const UserDashboard = () => {
+const DriveDashboard = () => {
   const [activeNavItem, setActiveNavItem] = useState("profile");
 
   const handleNavItemClick = (navItem) => {
@@ -59,70 +51,34 @@ const UserDashboard = () => {
               className="w-10 h-10 m-2 hidden sm:block"
             />
             <li className="cursor-pointer text-3xl font-bold m-6">
-              Request Ride
+              Ride Requests
             </li>
           </div>
 
           <div
             className={`w-full h-25 flex items-center justify-center bg-gray-800 text-white rounded-lg my-4 ${
-              activeNavItem === "cancel" ? "bg-green-600" : ""
+              activeNavItem === "Progress" ? "bg-green-600" : ""
             }`}
-            onClick={() => handleNavItemClick("cancel")}
+            onClick={() => handleNavItemClick("Progress")}
           >
             <img
-              src={cancel}
+              src={driver}
               alt="Profile"
               className="w-10 h-10 m-2 hidden sm:block"
             />
-            <li className="cursor-pointer text-3xl font-bold m-6">
-              Cancel Ride
-            </li>
-          </div>
-
-          <div
-            className={`w-full h-25 flex items-center justify-center bg-gray-800 text-white rounded-lg my-4 ${
-              activeNavItem === "pay" ? "bg-green-600" : ""
-            }`}
-            onClick={() => handleNavItemClick("pay")}
-          >
-            <img
-              src={pay}
-              alt="Profile"
-              className="w-10 h-10 m-2 hidden sm:block"
-            />
-            <li className="cursor-pointer text-3xl font-bold m-6">
-              Pay for Ride
-            </li>
-          </div>
-
-          <div
-            className={`w-full h-25 flex items-center justify-center bg-gray-800 text-white rounded-lg my-4 ${
-              activeNavItem === "rate" ? "bg-green-600" : ""
-            }`}
-            onClick={() => handleNavItemClick("rate")}
-          >
-            <img
-              src={check}
-              alt="Profile"
-              className="w-10 h-10 m-2 hidden sm:block"
-            />
-            <li className="cursor-pointer text-3xl font-bold m-6">
-              Rate Driver
-            </li>
+            <li className="cursor-pointer text-3xl font-bold m-6">Progress</li>
           </div>
         </ul>
       </div>
 
       {/* Content Display */}
       <div className="w-3/4 p-4">
-        {activeNavItem === "profile" && <ViewRideStatus></ViewRideStatus>}
-        {activeNavItem === "request" && <RequestRide></RequestRide>}
-        {activeNavItem === "cancel" && <CancelRide></CancelRide>}
-        {activeNavItem === "pay" && <PayDriver></PayDriver>}
-        {activeNavItem === "rate" && <UpdateDriverRating></UpdateDriverRating>}
+        {activeNavItem === "profile" && <h1>View/Edit Your Profile</h1>}
+        {activeNavItem === "request" && <h1>Request a Ride</h1>}
+        {activeNavItem === "Progress" && <h1>Progress</h1>}
       </div>
     </div>
   );
 };
 
-export default UserDashboard;
+export default DriveDashboard;

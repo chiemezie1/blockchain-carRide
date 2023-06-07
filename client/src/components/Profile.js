@@ -8,6 +8,7 @@ import PayDriver from "./PayDriver";
 import RequestTile from "./RequestTile";
 import UpdateDriverRating from "./UpdateDriverRating";
 import ViewRideStatus from "./ViewRideStatus";
+import UserDashboard from "./Dashboard/UserDashboard.js"
 
 const { ethers } = require("ethers");
 
@@ -92,7 +93,8 @@ function Profile() {
 
   return (
     <div>
-      <div className="bg-gray-300 min-h-screen">
+    <UserDashboard />
+      {/* <div className="bg-gray-300 min-h-screen">
         <Navbar></Navbar>
         <div className="antialiased max-w-8xl mx-auto my-12 bg-gray-300 px-8">
           {userType === "" ? (
@@ -217,7 +219,7 @@ function Profile() {
           )}
         </div>
       </div>
-      <Footer></Footer>
+      <Footer></Footer> */}
     </div>
   );
 }
