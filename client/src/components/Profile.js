@@ -8,7 +8,7 @@ import PayDriver from "./PayDriver";
 import RequestTile from "./RequestTile";
 import UpdateDriverRating from "./UpdateDriverRating";
 import ViewRideStatus from "./ViewRideStatus";
-import UserDashboard from "./Dashboard/UserDashboard.js"
+import UserDashboard from "./Dashboard/Dashboard.js"
 
 const { ethers } = require("ethers");
 
