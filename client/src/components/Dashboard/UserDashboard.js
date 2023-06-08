@@ -69,7 +69,7 @@ const UserDashboard = () => {
       }
     }
       getUserInfo();
-  }, [userType, provider, signer, address]);
+  }, [provider, signer, address]);
 
 
 
