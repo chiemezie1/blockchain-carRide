@@ -10,6 +10,7 @@ import CancelRide from "../CancelRide";
 import PayDriver from "../PayDriver";
 import UpdateDriverRating from "../UpdateDriverRating";
 import ViewRideStatus from "../ViewRideStatus";
+import CarRide from "../../contract/CarRide.json";
 const { ethers } = require("ethers");
 
 

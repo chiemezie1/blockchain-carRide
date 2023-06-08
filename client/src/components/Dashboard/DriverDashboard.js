@@ -5,6 +5,7 @@ import driver from "../../assets/_driver.svg";
 import home from "../../assets/home.svg";
 import activity from "../../assets/activity.svg";
 import RequestTile from "../RequestTile";
+import CarRide from "../../contract/CarRide.json";
 const { ethers } = require("ethers");
 
 const DriverDashboard = () => {
