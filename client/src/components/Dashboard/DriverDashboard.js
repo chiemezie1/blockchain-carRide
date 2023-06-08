@@ -3,8 +3,9 @@ import profileImage from "../../assets/profile.svg";
 import driver from "../../assets/_driver.svg";
 import home from "../../assets/home.svg";
 import activity from "../../assets/activity.svg";
+import RequestTile from "../RequestTile";
 
-const DriveDashboard = () => {
+const DriverDashboard = ({ userInfo }) => {
   const [activeNavItem, setActiveNavItem] = useState("profile");
 
   const handleNavItemClick = (navItem) => {
@@ -21,6 +22,7 @@ const DriveDashboard = () => {
         }}
       >
         <h2 className="text-5xl font-bold mb-4">Navigation</h2>
+        
         <div className="m-8 p-8 bg-gray-400 rounded-lg w-2/3 h-auto flex justify-center items-center">
           <img src={profileImage} alt="Profile" className="w-20 h-20 " />
         </div>
@@ -73,12 +75,12 @@ const DriveDashboard = () => {
 
       {/* Content Display */}
       <div className="w-3/4 p-4">
-        {activeNavItem === "profile" && <h1>View/Edit Your Profile</h1>}
-        {activeNavItem === "request" && <h1>Request a Ride</h1>}
+        {activeNavItem === "profile" && <p>Name: {userInfo.name}</p>}
+        {activeNavItem === "request" && <RequestTile />}
         {activeNavItem === "Progress" && <h1>Progress</h1>}
       </div>
     </div>
   );
 };
 
-export default DriveDashboard;
+export default DriverDashboard;

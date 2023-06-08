@@ -8,7 +8,8 @@ import PayDriver from "./PayDriver";
 import RequestTile from "./RequestTile";
 import UpdateDriverRating from "./UpdateDriverRating";
 import ViewRideStatus from "./ViewRideStatus";
-import UserDashboard from "./Dashboard/Dashboard.js"
+import DriverDashboard from "./Dashboard/DriverDashboard.js"
+import UserDashboard from "./Dashboard/UserDashboard.js"
 
 const { ethers } = require("ethers");
 
@@ -93,134 +94,10 @@ function Profile() {
 
   return (
     <div>
-    <UserDashboard />
-      {/* <div className="bg-gray-300 min-h-screen">
-        <Navbar></Navbar>
-        <div className="antialiased max-w-8xl mx-auto my-12 bg-gray-300 px-8">
-          {userType === "" ? (
-            <div>
-              <h2 className="font-bold text-4xl text-center p-8">
-                Please Select User
-              </h2>
-              <div className="flex text-center justify-center">
-                <button
-                  className="bg-blue-500 hover:bg-blue-700 text-3xl text-white font-bold m-4 py-4 px-8 rounded-lg mr-10"
-                  value="rider"
-                  onClick={handleUserType}
-                >
-                  Rider
-                </button>
-                <button
-                  className="bg-blue-500 hover:bg-blue-700 text-3xl text-white font-bold m-4 py-4 px-8 rounded-lg"
-                  value="driver"
-                  onClick={handleUserType}
-                >
-                  Driver
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="flex p-4">
-              <div className="w-full h-auto md:w-1/2 bg-blue-300 rounded-lg shadow-lg">
-                <div className="text-4xl font-extrabold  text-gray-900 p-8 text-center border-b border-gray-200 tracking-wide">
-                  Welcome Back {userInfo.name}!
-                  <span className="block text-lg text-gray-600 mt-2">
-                    You are registered{" "}
-                    {userType === "driver" ? (
-                      <p>
-                        As Driver ||
-                        <span className="text-xl ml-2">
-                          Seats Capacity: {userInfo.seats} ||
-                        </span>
-                        <span className="text-xl ml-2">
-                          Current rating: {userInfo.rating}
-                        </span>
-                      </p>
-                    ) : (
-                      <p>As Rider</p>
-                    )}
-                  </span>
-                </div>
-                <div className="block sm:flex md:block lg:flex items-center justify-center">
-                  <div className="mt-8 sm:m-8 md:m-0 md:mt-8 lg:m-8 text-center">
-                    <div className="inline-flex items-center">
-                      <span className="text-3xl font-medium">Contact:</span>
-                      <span className="text-3xl ml-2">{userInfo.contact}</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 mb-8 sm:m-8 md:m-0 md:mt-4 md:mb-8 lg:m-8 text-center">
-                    <div className="inline-flex items-center">
-                      <span className="text-3xl font-medium">Email:</span>
-                      <span className="text-xl ml-2">{userInfo.email}</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-center mt-3">
-                  <ul>
-                    <li className="flex items-center">
-                      <div className="bg-green-200 rounded-full p-2 fill-current text-green-700">
-                        <svg
-                          className="w-4 h-4"
-                          viewBox="0 0 24 24"
-                          className=""
-                        ></svg>
-                      </div>
-                      <span className="text-gray-700 text-lg ml-3">
-                        No hidden fees
-                      </span>
-                    </li>
-                    <li className="flex items-center mt-3">
-                      <div className="bg-green-200 rounded-full p-2 fill-current text-green-700">
-                        <svg
-                          className="w-4 h-4"
-                          viewBox="0 0 24 24"
-                          className=""
-                        ></svg>
-                      </div>
-                      <span className="text-gray-700 text-lg ml-3">
-                        Pay only for what you use
-                      </span>
-                    </li>
-                    <li className="flex items-center mt-3">
-                      <div className="bg-green-200 rounded-full p-2 fill-current text-green-700">
-                        <svg
-                          className="w-4 h-4"
-                          viewBox="0 0 24 24"
-                          className=""
-                        ></svg>
-                      </div>
-                      <span className="text-gray-700 text-lg ml-3">
-                        Real-time fee reporting
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-                <span className="block text-lg text-gray-600 mt-2 p-16">
-                  BlockRide car Ride service
-                </span>
-                {userType === "rider" ? (
-                  <ViewRideStatus></ViewRideStatus>
-                ) : null}
-              </div>
-
-              {userType === "rider" ? (
-                <div className="md:w-1/2 px-8 md:px-0 md:py-8">
-                  <RequestRide></RequestRide>
-                  <div className="flex flex-wrap sm:flex-row mx-16 px-16">
-                    <CancelRide></CancelRide>
-                    <PayDriver></PayDriver>
-                    <UpdateDriverRating></UpdateDriverRating>
-                  </div>
-                </div>
-              ) : (
-                <RequestTile></RequestTile>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-      <Footer></Footer> */}
+      <UserDashboard userInfo={userInfo} />
+      <DriverDashboard userInfo={userInfo} />
     </div>
   );
 }
+
 export default Profile;
