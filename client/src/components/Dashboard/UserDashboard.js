@@ -10,6 +10,7 @@ import CancelRide from "../CancelRide";
 import PayDriver from "../PayDriver";
 import UpdateDriverRating from "../UpdateDriverRating";
 import ViewRideStatus from "../ViewRideStatus";
+const { ethers } = require("ethers");
 
 
 const UserDashboard = () => {
@@ -41,7 +42,6 @@ const UserDashboard = () => {
     }
     loadProvider();
   }, []);
-
 
 
   useEffect(() => {
