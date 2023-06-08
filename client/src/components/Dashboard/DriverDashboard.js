@@ -1,11 +1,79 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import RequestRide from "../RequestRide";
 import profileImage from "../../assets/profile.svg";
 import driver from "../../assets/_driver.svg";
 import home from "../../assets/home.svg";
 import activity from "../../assets/activity.svg";
 import RequestTile from "../RequestTile";
 
-const DriverDashboard = ({ userInfo }) => {
+const DriverDashboard = () => {
+
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    contact: "",
+    email: "",
+    carNumber: "",
+    seats: "",
+    rating: "",
+    status: "",
+  });
+  const [address, setAddress] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [signer, setSigner] = useState(null);
+
+  useEffect(() => {
+    async function loadProvider() {
+      if (window.ethereum) {
+        // load provider (example: using metamask)
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        setProvider(provider);
+        setSigner(signer);
+        const addr = await signer.getAddress();
+        setAddress(addr.toString());
+      } else {
+        console.error(
+          "Non-Ethereum browser detected. You should consider trying MetaMask!"
+        );
+      }
+    }
+    loadProvider();
+  }, []);
+
+
+  useEffect(() => {
+    async function getUserInfo() {
+      if (!provider || !signer) {
+        alert("Please connect to Ethereum network");
+        return;
+      }
+      const contract = new ethers.Contract(
+        CarRide.address,
+        CarRide.abi,
+        signer
+      );
+      try {
+          const driver = await contract.getDriverInfo(address);
+          setUserInfo({
+            name: driver[0],
+            contact: driver[1],
+            email: driver[2],
+            carNumber: driver[3],
+            seats: driver[4].toNumber(),
+            rating: driver[5].toNumber(),
+            status: driver[6],
+          });
+      } catch (error) {
+        console.error(error);
+        alert("Error: " + error.message);
+      }
+    }
+      getUserInfo();
+
+  }, [ provider, signer, address]);
+
+
+
   const [activeNavItem, setActiveNavItem] = useState("profile");
 
   const handleNavItemClick = (navItem) => {
@@ -75,7 +143,7 @@ const DriverDashboard = ({ userInfo }) => {
 
       {/* Content Display */}
       <div className="w-3/4 p-4">
-        {activeNavItem === "profile" && <p>Name: {userInfo.name}</p>}
+        {activeNavItem === "profile" && <p>Name</p>}
         {activeNavItem === "request" && <RequestTile />}
         {activeNavItem === "Progress" && <h1>Progress</h1>}
       </div>
