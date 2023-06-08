@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import profileImage from "../../assets/profile.svg";
 import cancel from "../../assets/_cancel.svg";
 import pay from "../../assets/pay.svg";
@@ -13,6 +13,116 @@ import ViewRideStatus from "../ViewRideStatus";
 
 
 const UserDashboard = () => {
+  
+  const [userType, setUserType] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    contact: "",
+    email: "",
+    carNumber: "",
+    seats: "",
+    rating: "",
+    status: "",
+  });
+  const [address, setAddress] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [signer, setSigner] = useState(null);
+
+  useEffect(() => {
+    async function loadProvider() {
+      if (window.ethereum) {
+        // load provider (example: using metamask)
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        setProvider(provider);
+        setSigner(signer);
+        const addr = await signer.getAddress();
+        setAddress(addr.toString());
+      } else {
+        console.error(
+          "Non-Ethereum browser detected. You should consider trying MetaMask!"
+        );
+      }
+    }
+    loadProvider();
+  }, []);
+
+  const handleUserType = (e) => {
+    setUserType(e.target.value);
+  };
+
+  useEffect(() => {
+    async function getUserInfo() {
+      if (!provider || !signer) {
+        alert("Please connect to Ethereum network");
+        return;
+      }
+      const contract = new ethers.Contract(
+        CarRide.address,
+        CarRide.abi,
+        signer
+      );
+      try {
+        if (userType === "rider") {
+          const rider = await contract.getRiderInfo(address);
+          setUserInfo({
+            name: rider[0],
+            contact: rider[1],
+            email: rider[2],
+          });
+        } else if (userType === "driver") {
+          const driver = await contract.getDriverInfo(address);
+          setUserInfo({
+            name: driver[0],
+            contact: driver[1],
+            email: driver[2],
+            carNumber: driver[3],
+            seats: driver[4].toNumber(),
+            rating: driver[5].toNumber(),
+            status: driver[6],
+          });
+        }
+      } catch (error) {
+        console.error(error);
+        alert("Error: " + error.message);
+      }
+    }
+    if (userType !== "" && address) {
+      getUserInfo();
+    }
+  }, [userType, provider, signer, address]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   const [activeNavItem, setActiveNavItem] = useState("profile");
 
   const handleNavItemClick = (navItem) => {
