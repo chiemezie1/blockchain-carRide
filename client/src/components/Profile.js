@@ -95,7 +95,7 @@ function Profile() {
   return (
     <div>
       <UserDashboard userInfo={userInfo} />
-      <DriverDashboard userInfo={userInfo} />
+      {/* <DriverDashboard userInfo={userInfo} /> */}
     </div>
   );
 }

@@ -84,7 +84,7 @@ const UserDashboard = () => {
     <div className="flex items-center justify-center">
       {/* Navigation Sidebar */}
       <div
-        className="w-1/4 h-screen flex flex-col items-center justify-evenly p-8"
+        className="w-1/4 h-screen flex flex-col items-center justify-evenly p-8 border-4 border-black rounded-md"
         style={{
           background: "linear-gradient(to bottom, #2a7a3e, #2bb54e, #0ad13c)"
         }}
@@ -93,6 +93,8 @@ const UserDashboard = () => {
         <div className="m-8 p-8 bg-gray-400 rounded-lg w-2/3 h-auto flex justify-center items-center">
           <img src={profileImage} alt="Profile" className="w-20 h-20 " />
         </div>
+        <p className="text-3xl font-bold">{userInfo.name}</p>
+
         <ul className="w-full text-center">
           <div
             className={`w-full h-25 flex items-center justify-center bg-gray-800 text-white rounded-lg my-4 ${
