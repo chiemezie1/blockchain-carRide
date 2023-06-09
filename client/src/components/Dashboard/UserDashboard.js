@@ -84,7 +84,7 @@ const UserDashboard = () => {
     <div className="flex items-center justify-center">
       {/* Navigation Sidebar */}
       <div
-        className="w-1/4 h-screen flex flex-col items-center justify-evenly p-8 border-4 border-black rounded-md"
+        className="w-1/4 h-screen flex flex-col items-center justify-evenly p-8 border-4  border-black rounded-md"
         style={{
           background: "linear-gradient(to bottom, #2a7a3e, #2bb54e, #0ad13c)"
         }}
@@ -177,7 +177,8 @@ const UserDashboard = () => {
       </div>
 
       {/* Content Display */}
-      <div className="w-3/4 p-4">
+      <div className="h-screen w-3/4"
+      style={{ background: "linear-gradient(90deg, #181818 0%, #BA8B02 100%)" }}>
         {activeNavItem === "profile" && <ViewRideStatus></ViewRideStatus>}
         {activeNavItem === "request" && <RequestRide></RequestRide>}
         {activeNavItem === "cancel" && <CancelRide></CancelRide>}

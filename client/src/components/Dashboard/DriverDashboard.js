@@ -144,7 +144,8 @@ const DriverDashboard = () => {
       </div>
 
       {/* Content Display */}
-      <div className="w-3/4 p-4">
+      <div className="h-screen w-3/4"
+      style={{ background: "linear-gradient(90deg, #FDBB2D 0%, #3A1C71 100%)" }}>
         {activeNavItem === "profile" && <p>Name</p>}
         {activeNavItem === "request" && <RequestTile />}
         {activeNavItem === "Progress" && <h1>Progress</h1>}
@@ -154,3 +155,4 @@ const DriverDashboard = () => {
 };
 
 export default DriverDashboard;
+

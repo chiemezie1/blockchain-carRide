@@ -7,8 +7,8 @@ const { ethers } = require("ethers");
 function Profile() {
   return (
     <div>
-      <UserDashboard userInfo={userInfo} />
-      {/* <DriverDashboard userInfo={userInfo} /> */}
+      <UserDashboard  />
+      {/* <DriverDashboard  /> */}
     </div>
   );
 }
