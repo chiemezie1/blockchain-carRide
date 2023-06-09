@@ -5,74 +5,13 @@ import driver from "../../assets/_driver.svg";
 import home from "../../assets/home.svg";
 import activity from "../../assets/activity.svg";
 import RequestTile from "../RequestTile";
-import CarRide from "../../contract/CarRide.json";
+import DashBoardDriver from "./DashBoardDriver.js"
+
 const { ethers } = require("ethers");
 
 const DriverDashboardPage = () => {
 
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    contact: "",
-    email: "",
-    carNumber: "",
-    seats: "",
-    rating: "",
-    status: "",
-  });
-  const [address, setAddress] = useState(null);
-  const [provider, setProvider] = useState(null);
-  const [signer, setSigner] = useState(null);
 
-  useEffect(() => {
-    async function loadProvider() {
-      if (window.ethereum) {
-        // load provider (example: using metamask)
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        setProvider(provider);
-        setSigner(signer);
-        const addr = await signer.getAddress();
-        setAddress(addr.toString());
-      } else {
-        console.error(
-          "Non-Ethereum browser detected. You should consider trying MetaMask!"
-        );
-      }
-    }
-    loadProvider();
-  }, []);
-
-
-  useEffect(() => {
-    async function getUserInfo() {
-      if (!provider || !signer) {
-        alert("Please connect to Ethereum network");
-        return;
-      }
-      const contract = new ethers.Contract(
-        CarRide.address,
-        CarRide.abi,
-        signer
-      );
-      try {
-          const driver = await contract.getDriverInfo(address);
-          setUserInfo({
-            name: driver[0],
-            contact: driver[1],
-            email: driver[2],
-            carNumber: driver[3],
-            seats: driver[4].toNumber(),
-            rating: driver[5].toNumber(),
-            status: driver[6],
-          });
-      } catch (error) {
-        console.error(error);
-        alert("Error: " + error.message);
-      }
-    }
-      getUserInfo();
-
-  }, [ provider, signer, address]);
 
 
 
@@ -108,7 +47,7 @@ const DriverDashboardPage = () => {
               alt="Profile"
               className="w-10 h-10 m-2 hidden sm:block"
             />
-            <li className="cursor-pointer text-3xl font-bold m-6">Profile</li>
+            <li className="cursor-pointer text-2xl font-bold m-6">Profile</li>
           </div>
 
           <div
@@ -122,7 +61,7 @@ const DriverDashboardPage = () => {
               alt="Profile"
               className="w-10 h-10 m-2 hidden sm:block"
             />
-            <li className="cursor-pointer text-3xl font-bold m-6">
+            <li className="cursor-pointer text-2xl font-bold m-6">
               Ride Requests
             </li>
           </div>
@@ -138,7 +77,7 @@ const DriverDashboardPage = () => {
               alt="Profile"
               className="w-10 h-10 m-2 hidden sm:block"
             />
-            <li className="cursor-pointer text-3xl font-bold m-6">Progress</li>
+            <li className="cursor-pointer text-2xl font-bold m-6">Progress</li>
           </div>
         </ul>
       </div>
@@ -146,7 +85,7 @@ const DriverDashboardPage = () => {
       {/* Content Display */}
       <div className="h-screen w-3/4"
       style={{ background: "linear-gradient(90deg, #181818 0%, #BA8B02 100%)" }}>
-        {activeNavItem === "profile" && <p>Name</p>}
+        {activeNavItem === "profile" && <DashBoardDriver />}
         {activeNavItem === "request" && <RequestTile />}
         {activeNavItem === "Progress" && <h1>Progress</h1>}
       </div>

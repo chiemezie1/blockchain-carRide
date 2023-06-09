@@ -96,7 +96,7 @@ const DashBoardRider = (propos) => {
         </div>
         <div className="py-12">
           <div className="mr-20 ml-10 p-10 bg-gray-500 rounded-lg text-xl text-gray-900 text-left">
-            As a rider on BlockRide, you can expect the following:
+            As a rider on BlockRide, you can expect the following
             <br />
             Experience safe and reliable transportation services provided by
             professional car ride drivers with years of expertise.
