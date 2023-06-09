@@ -9,12 +9,12 @@ import RequestRide from "../RequestRide";
 import CancelRide from "../CancelRide";
 import PayDriver from "../PayDriver";
 import UpdateDriverRating from "../UpdateDriverRating";
-import ViewRideStatus from "../ViewRideStatus";
 import CarRide from "../../contract/CarRide.json";
+import DashBoard from "./DashBoard.js"
 const { ethers } = require("ethers");
 
 
-const UserDashboard = () => {
+const UserDashboardPage = () => {
  
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -179,7 +179,7 @@ const UserDashboard = () => {
       {/* Content Display */}
       <div className="h-screen w-3/4"
       style={{ background: "linear-gradient(90deg, #181818 0%, #BA8B02 100%)" }}>
-        {activeNavItem === "profile" && <ViewRideStatus></ViewRideStatus>}
+        {activeNavItem === "profile" && <DashBoard></DashBoard>}
         {activeNavItem === "request" && <RequestRide></RequestRide>}
         {activeNavItem === "cancel" && <CancelRide></CancelRide>}
         {activeNavItem === "pay" && <PayDriver></PayDriver>}
@@ -189,4 +189,4 @@ const UserDashboard = () => {
   );
 };
 
-export default UserDashboard;
+export default UserDashboardPage;

@@ -8,7 +8,7 @@ import RequestTile from "../RequestTile";
 import CarRide from "../../contract/CarRide.json";
 const { ethers } = require("ethers");
 
-const DriverDashboard = () => {
+const DriverDashboardPage = () => {
 
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -145,7 +145,7 @@ const DriverDashboard = () => {
 
       {/* Content Display */}
       <div className="h-screen w-3/4"
-      style={{ background: "linear-gradient(90deg, #FDBB2D 0%, #3A1C71 100%)" }}>
+      style={{ background: "linear-gradient(90deg, #181818 0%, #BA8B02 100%)" }}>
         {activeNavItem === "profile" && <p>Name</p>}
         {activeNavItem === "request" && <RequestTile />}
         {activeNavItem === "Progress" && <h1>Progress</h1>}
@@ -154,5 +154,5 @@ const DriverDashboard = () => {
   );
 };
 
-export default DriverDashboard;
+export default DriverDashboardPage;
 

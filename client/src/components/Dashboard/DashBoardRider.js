@@ -1,11 +1,9 @@
 import React from "react";
+import ViewRideStatus from "../ViewRideStatus";
 
 const DashBoardBG = (propos) => {
   return (
-    <div
-      className="h-screen w-screen"
-      style={{ background: "linear-gradient(90deg, #FDBB2D 0%, #3A1C71 100%)" }}
-    >
+    <div>
       <div className="mx-auto py-12 flex justify-center">
         <div
           className="w-3/5 bg-white rounded-lg shadow-lg p-8 text-center"
@@ -28,11 +26,11 @@ const DashBoardBG = (propos) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap justify-end">
-        <div className="py-12 mr-20 ml-0 flex">
+      <div className="flex flex-wrap justify-start">
+        <div className="py-12 ml-20 flex">
           <div className="p-10 bg-blue-400 rounded-lg ">
-            <div className="text-xl p-4 font-bold text-xl text-gray-900 ">
-              Track Your ride
+            <div className="text-xl p-4 font-bold text-gray-900 ">
+              Track Your ride {<ViewRideStatus />}
             </div>
           </div>
         </div>
