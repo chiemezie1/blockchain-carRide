@@ -3,7 +3,6 @@ import ViewRideStatus from "../ViewRideStatus";
 import CarRide from "../../contract/CarRide.json";
 const { ethers } = require("ethers");
 
-
 const DashBoardRider = (propos) => {
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -33,7 +32,6 @@ const DashBoardRider = (propos) => {
     loadProvider();
   }, []);
 
-
   useEffect(() => {
     async function getUserInfo() {
       if (!provider || !signer) {
@@ -46,18 +44,18 @@ const DashBoardRider = (propos) => {
         signer
       );
       try {
-          const rider = await contract.getRiderInfo(address);
-          setUserInfo({
-            name: rider[0],
-            contact: rider[1],
-            email: rider[2],
-          });
+        const rider = await contract.getRiderInfo(address);
+        setUserInfo({
+          name: rider[0],
+          contact: rider[1],
+          email: rider[2],
+        });
       } catch (error) {
         console.error(error);
         alert("Error: " + error.message);
       }
     }
-      getUserInfo();
+    getUserInfo();
   }, [provider, signer, address]);
 
   return (
@@ -71,15 +69,19 @@ const DashBoardRider = (propos) => {
             Riders Profile
           </h2>
           <div className="mb-8">
-            <h3 className="p-4 text-3xl font-bold text-gray-800">Welcome {userInfo.name} </h3>
+            <h3 className="p-4 text-3xl font-bold text-gray-800">
+              Welcome {userInfo.name}{" "}
+            </h3>
             <p className="text-xl font-semibold text-gray-600">
-              Car Ride Rider
+              BlockRide Rider
             </p>
-            <div className="flex justify-center">
+            <div className="flex flex-wrap justify-center">
               <p className="p-2 text-xl text font-semibold text-gray-600">
                 Phone:{userInfo.contact}
               </p>
-              <p className="p-2 text-xl font-semibold text-gray-600">Email: {userInfo.email} </p>
+              <p className="p-2 text-xl font-semibold text-gray-600">
+                Email: {userInfo.email}{" "}
+              </p>
             </div>
           </div>
         </div>
@@ -94,16 +96,16 @@ const DashBoardRider = (propos) => {
         </div>
         <div className="py-12">
           <div className="mr-20 ml-10 p-10 bg-gray-500 rounded-lg text-xl text-gray-900 text-left">
-            As a professional car ride driver with years of experience
+            As a rider on BlockRide, you can expect the following:
             <br />
-            Be dedicated to providing safe and reliable transportation services
-            to your passengers.
+            Experience safe and reliable transportation services provided by
+            professional car ride drivers with years of expertise.
             <br />
-            Take pride in delivering exceptional customer service and ensuring a
-            comfortable journey for every ride.
-            <br /> <br />
-            With BlockRide, we embrace the decentralized ride-sharing platform,
-            which prioritizes transparency, security, and efficiency in the
+            Enjoy exceptional customer service, ensuring a comfortable journey
+            for every ride you take.
+            <br />
+            BlockRide embraces a decentralized ride-sharing platform that
+            prioritizes transparency, security, and efficiency in the
             transportation industry.
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import profileImage from "../../assets/profile.svg";
 import cancel from "../../assets/_cancel.svg";
 import pay from "../../assets/pay.svg";
@@ -9,67 +9,11 @@ import RequestRide from "../RequestRide";
 import CancelRide from "../CancelRide";
 import PayDriver from "../PayDriver";
 import UpdateDriverRating from "../UpdateDriverRating";
-import CarRide from "../../contract/CarRide.json";
 import DashBoardRider from "./DashBoardRider.js"
-const { ethers } = require("ethers");
+
 
 
 const UserDashboardPage = () => {
- 
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    contact: "",
-    email: "",
-  });
-  const [address, setAddress] = useState(null);
-  const [provider, setProvider] = useState(null);
-  const [signer, setSigner] = useState(null);
-
-  useEffect(() => {
-    async function loadProvider() {
-      if (window.ethereum) {
-        // load provider (example: using metamask)
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        setProvider(provider);
-        setSigner(signer);
-        const addr = await signer.getAddress();
-        setAddress(addr.toString());
-      } else {
-        console.error(
-          "Non-Ethereum browser detected. You should consider trying MetaMask!"
-        );
-      }
-    }
-    loadProvider();
-  }, []);
-
-
-  useEffect(() => {
-    async function getUserInfo() {
-      if (!provider || !signer) {
-        alert("Please connect to Ethereum network");
-        return;
-      }
-      const contract = new ethers.Contract(
-        CarRide.address,
-        CarRide.abi,
-        signer
-      );
-      try {
-          const rider = await contract.getRiderInfo(address);
-          setUserInfo({
-            name: rider[0],
-            contact: rider[1],
-            email: rider[2],
-          });
-      } catch (error) {
-        console.error(error);
-        alert("Error: " + error.message);
-      }
-    }
-      getUserInfo();
-  }, [provider, signer, address]);
 
 
 
@@ -93,7 +37,6 @@ const UserDashboardPage = () => {
         <div className="m-8 p-8 bg-gray-400 rounded-lg w-2/3 h-auto flex justify-center items-center">
           <img src={profileImage} alt="Profile" className="w-20 h-20 " />
         </div>
-        <p className="text-3xl font-bold">{userInfo.name}</p>
 
         <ul className="w-full text-center">
           <div
