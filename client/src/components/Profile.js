@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import DriverDashboard from "./Dashboard/DriverDashboard.js"
-import UserDashboard from "./Dashboard/UserDashboard.js"
+import DriverDashboardPage from "./Dashboard/DriverDashboardPage.js"
+import UserDashboardPage from "./Dashboard/UserDashboardPage.js"
 
 const { ethers } = require("ethers");
 
 function Profile() {
   return (
     <div>
-      <UserDashboard  />
-      {/* <DriverDashboard  /> */}
+      <UserDashboardPage />
+      {/* <DriverDashboardPage  /> */}
     </div>
   );
 }

@@ -10,7 +10,7 @@ import CancelRide from "../CancelRide";
 import PayDriver from "../PayDriver";
 import UpdateDriverRating from "../UpdateDriverRating";
 import CarRide from "../../contract/CarRide.json";
-import DashBoard from "./DashBoard.js"
+import DashBoardRider from "./DashBoardRider.js"
 const { ethers } = require("ethers");
 
 
@@ -179,7 +179,7 @@ const UserDashboardPage = () => {
       {/* Content Display */}
       <div className="h-screen w-3/4"
       style={{ background: "linear-gradient(90deg, #181818 0%, #BA8B02 100%)" }}>
-        {activeNavItem === "profile" && <DashBoard></DashBoard>}
+        {activeNavItem === "profile" && <DashBoardRider></DashBoardRider>}
         {activeNavItem === "request" && <RequestRide></RequestRide>}
         {activeNavItem === "cancel" && <CancelRide></CancelRide>}
         {activeNavItem === "pay" && <PayDriver></PayDriver>}

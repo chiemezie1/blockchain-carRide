@@ -1,7 +1,7 @@
 import React from "react";
 import ViewRideStatus from "../ViewRideStatus";
 
-const DashBoardBG = (propos) => {
+const DashBoardRider = (propos) => {
   return (
     <div>
       <div className="mx-auto py-12 flex justify-center">
@@ -10,12 +10,12 @@ const DashBoardBG = (propos) => {
           style={{ backgroundColor: "rgba(255, 255, 255, 0.5)" }}
         >
           <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Driver Profile
+            Riders Profile
           </h2>
           <div className="mb-8">
             <h3 className="p-4 text-3xl font-bold text-gray-800">Welcome </h3>
             <p className="text-xl font-semibold text-gray-600">
-              Car Ride Driver
+              Car Ride Rider
             </p>
             <div className="flex justify-center">
               <p className="p-2 text-xl text font-semibold text-gray-600">
@@ -54,4 +54,4 @@ const DashBoardBG = (propos) => {
   );
 };
 
-export default DashBoardBG;
+export default DashBoardRider;
