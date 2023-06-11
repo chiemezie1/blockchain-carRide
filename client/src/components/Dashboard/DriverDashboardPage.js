@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import RequestRide from "../RequestRide";
 import profileImage from "../../assets/profile.svg";
 import driver from "../../assets/_driver.svg";
 import home from "../../assets/home.svg";
 import activity from "../../assets/activity.svg";
 import RequestTile from "../RequestTile";
+import DriversDetails from "../DriversDetails";
 import DashBoardDriver from "./DashBoardDriver.js"
 
 const { ethers } = require("ethers");
@@ -87,7 +87,7 @@ const DriverDashboardPage = () => {
       style={{ background: "linear-gradient(90deg, #181818 0%, #BA8B02 100%)" }}>
         {activeNavItem === "profile" && <DashBoardDriver />}
         {activeNavItem === "request" && <RequestTile />}
-        {activeNavItem === "Progress" && <h1>Progress</h1>}
+        {activeNavItem === "Progress" && <DriversDetails />}
       </div>
     </div>
   );

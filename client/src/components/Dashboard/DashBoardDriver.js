@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CarRide from "../../contract/CarRide.json";
 const { ethers } = require("ethers");
 
-const DashBoardRider = (propos) => {
+const DashBoardRider = () => {
     const [userInfo, setUserInfo] = useState({
         name: "",
         contact: "",
@@ -75,7 +75,7 @@ const DashBoardRider = (propos) => {
           style={{ backgroundColor: "rgba(255, 255, 255, 0.5)" }}
         >
           <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Riders Profile
+            Drivers Profile
           </h2>
           <div className="mb-8">
             <h3 className="p-4 text-3xl font-bold text-gray-800">
