@@ -21,13 +21,13 @@ const DriverDashboardPage = () => {
     <div className="flex items-center justify-center">
       {/* Navigation Sidebar */}
       <div
-        className="w-1/4 h-screen p-8"
+        className="w-1/4 h-screen flex flex-col items-center justify-evenly p-8"
         style={{
           background: "linear-gradient(to bottom, #2a7a3e, #2bb54e, #0ad13c)"
         }}
       >
        <h2 className="text-5xl font-bold mb-4">Navigation</h2>
-      <div  className="h-4/5 w-full  flex flex-col items-center justify-evenly">
+      <div  className="h-3/5">
         
         <div className="m-8 p-8 bg-gray-400 rounded-lg w-2/3 h-auto flex justify-center items-center">
           <img src={profileImage} alt="Profile" className="w-20 h-20 " />
