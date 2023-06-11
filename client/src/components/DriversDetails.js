@@ -95,31 +95,31 @@ const DriversDetails = () => {
       <div className="flex flex-col items-center justify-center m-10">
         <h1 className="text-4xl font-bold m-8">Your Rating</h1>
 
-        <div className="border-2 border-green-900">
+        <div className="border-2 border-gray-300">
           <div className="flex items-center">
             <ul className="flex flex-row items-baseline">
               <li
-                className={`border-2 border-green-900 m-2 h-4 w-5 ${
+                className={`border-2 border-gray-300 m-2 h-6 w-8 ${
                   userInfo.rating >= 1 ? "bg-green-900" : ""
                 }`}
               ></li>
               <li
-                className={`border-2 border-green-900 m-2 h-8 w-5 ${
+                className={`border-2 border-gray-300 m-2 h-10 w-8 ${
                   userInfo.rating >= 2 ? "bg-green-900" : ""
                 }`}
               ></li>
               <li
-                className={`border-2 border-green-900 m-2 h-12 w-5 ${
+                className={`border-2 border-gray-300 m-2 h-16 w-8 ${
                   userInfo.rating >= 3 ? "bg-green-900" : ""
                 }`}
               ></li>
               <li
-                className={`border-2 border-green-900 m-2 h-16 w-5 ${
+                className={`border-2 border-gray-300 m-2 h-24 w-8 ${
                   userInfo.rating >= 4 ? "bg-green-900" : ""
                 }`}
               ></li>
               <li
-                className={`border-2 border-green-900 m-2 h-20 w-5 ${
+                className={`border-2 border-gray-300 m-2 h-28 w-8 ${
                   userInfo.rating >= 5 ? "bg-green-900" : ""
                 }`}
               ></li>
