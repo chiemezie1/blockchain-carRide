@@ -68,8 +68,8 @@ const DriversDetails = () => {
   }, [ provider, signer, address]);
 
   return (
-    <div className="flex flex-col justify-center items-center w-full">
-      <div className="flex justify-center items-center m-20">
+    <div className="flex flex-wrap justify-center items-center w-full">
+      <div className="flex flex-wrap justify-center items-center m-20">
       
         <div className=" flex flex-row items-center justify-between bg-gray-200 shadow-lg rounded-lg p-5">
           <div className="bg-blue-500 rounded-lg p-6 m-2">
@@ -80,17 +80,18 @@ const DriversDetails = () => {
             <h2 className="text-xl font-bold text-white">Token Balance</h2>
             <p className="text-2xl text-white">{userInfo.seatNumber}</p>
           </div>
-          <div className="bg-purple-500 rounded-lg p-6 m-2">
-            <h2 className="text-xl font-bold text-white"> User Address</h2>
-            <p className="text-2xl text-white">{address}</p>
-          </div>
           <div className="bg-yellow-500 rounded-lg p-6 m-2">
             <h2 className="text-xl font-bold text-white">Seat Number</h2>
             <p className="text-2xl text-white">{userInfo.seats}</p>
           </div>
         </div>
       </div>
-
+      <div className=" flex flex-row items-center justify-between overflow-hidden  bg-gray-200 shadow-lg rounded-lg p-5">
+      <div className="bg-purple-500 rounded-lg p-6 m-2">
+            <h2 className="text-xl font-bold text-white"> User Address</h2>
+            <p className="text-2xl text-white overflow-hidden ">{address}</p>
+          </div>
+          </div>
       <div className="flex flex-col items-center justify-center m-10">
         <h1 className="text-4xl font-bold m-8">Your Rating</h1>
 
