@@ -119,7 +119,7 @@ const Register = () => {
             <UserRegistration onSubmit={handleSubmit} />
           ) : userType === "driver" && !isRegistered ? (
             <DriverRegistration onSubmit={handleSubmit} />
-          ) : (isRegistered == true ? (
+          ) : (isRegistered === true ? (
             <div>
             <p>Registration successful!</p>
             <a href="/" className="text-white">Home</a>
