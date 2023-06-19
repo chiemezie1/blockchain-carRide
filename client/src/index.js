@@ -6,24 +6,34 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { Web3ReactProvider } from '@web3-react/core'
+import { Web3Provider } from "@ethersproject/providers";
 import About from './components/About';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import Register from './components/Register';
 
 
+function getLibrary(provider) {
+  return new Web3Provider(provider);
+}
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/About" element={<About />}/> 
-        <Route path='/Register' element={<Register/>}/>
-        <Route path="/About/:tokenId" element={<About />}/>        
-        <Route path="/profile" element={<Profile />}/>
-      </Routes>
-    </BrowserRouter>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/About/:tokenId" element={<About />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
+    </Web3ReactProvider>
   </React.StrictMode>
 );
 
